@@ -1,4 +1,4 @@
-#include "..\stdafx.h"
+#include "stdafx.h"
 #include "azure_kinect.h"
 
 azure_kinect::azure_kinect()
