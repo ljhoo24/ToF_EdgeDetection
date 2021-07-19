@@ -1,8 +1,5 @@
 #pragma once
-
-#include "defines.h"
-using namespace std;
-using namespace cv;
+#include "..\stdafx.h"
 
 class ObjManager
 {

@@ -1,6 +1,5 @@
+#include "..\stdafx.h"
 #include "azure_kinect.h"
-
-
 
 azure_kinect::azure_kinect()
 {
@@ -32,6 +31,7 @@ vector<k4a::image> azure_kinect::getPointCloudFromMultiDevice()
 	return rt;
 }
 
+#ifdef BODYTRACK
 k4abt::frame azure_kinect::getBodyFrameFromSingleDevice()
 {
 	setBodyFrame();
@@ -46,6 +46,7 @@ vector<k4abt::frame> azure_kinect::getBodyFrameFromMultiDevice()
 	ret.push_back(m_SubordinateBTFrame);
 	return ret;
 }
+#endif
 
 k4a::image azure_kinect::D2PCTransformbyMaster(k4a::image depthImage)
 {
@@ -223,6 +224,7 @@ void azure_kinect::getPointCloudFromMultiDevice(k4a::image & oPC1, k4a::image & 
 
 void  azure_kinect::setBodyFrame()
 {
+#ifdef BODYTRACK
 	if (m_DeviceCount == 1)
 	{
 		m_MasterDevice.get_capture(&m_MasterCaputre);
@@ -247,4 +249,5 @@ void  azure_kinect::setBodyFrame()
 			m_MasterTracker.pop_result(&m_MasterBTFrame);
 		}
 	}
+#endif
 }

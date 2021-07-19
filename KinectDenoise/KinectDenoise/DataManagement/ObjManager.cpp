@@ -1,6 +1,5 @@
+#include "..\stdafx.h"
 #include "ObjManager.h"
-
-
 
 ObjManager::ObjManager()
 {
@@ -11,7 +10,6 @@ ObjManager::ObjManager()
 ObjManager::~ObjManager()
 {
 }
-
 
 void ObjManager::ReadOBJ(char* fileName)
 {
@@ -39,7 +37,6 @@ void ObjManager::ReadOBJ(char* fileName)
 
 	fclose(fp);
 }
-
 
 void ObjManager::SaveOBJ(char* fileName)
 {
