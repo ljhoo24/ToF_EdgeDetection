@@ -5,7 +5,7 @@ This Project Build On Windows 10 with VS 2019.
 
 This Project Require ...
 1. PCL
-2. Additional 3D Data Viewer. (Such as MeshLab, CloudCompare)
+2. tbd
 
 
 MIT License.
