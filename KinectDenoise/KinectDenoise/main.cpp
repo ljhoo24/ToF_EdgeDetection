@@ -3,6 +3,7 @@
 
 #include "Kinect\azure_kinect.h"
 #include "DataManagement\ObjManager.h"
+#include "DataManagement\data_mng.h"
 #include "Util\timer.h"
 
 // azure kinect device
@@ -14,9 +15,20 @@ void drawScene(pcl::visualization::PCLVisualizer& viewer)
 	// update every frame
 	auto ptc = kinectDevice->getPointCloudFromSingleDevice();
 
-	//viewer.addPointCloud();
+	auto pclPTC = data_mng::ConvertPointCloud2Vertex(ptc);
+
+	// processing function call
+
+
+	// draw scene - update point cloud
+	
+	viewer.removePointCloud();
+
+	if (!viewer.addPointCloud(pclPTC))
+		viewer.updatePointCloud(pclPTC);
 }
 
+/// todo : keyboard controller update
 int main()
 {
 	// azure kinect setup
