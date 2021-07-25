@@ -11,7 +11,7 @@ ObjManager::~ObjManager()
 {
 }
 
-void ObjManager::ReadOBJ(char* fileName)
+void ObjManager::ReadOBJ(const char* fileName)
 {
 	FILE* fp;
 	fp = fopen(fileName, "r");
@@ -38,7 +38,7 @@ void ObjManager::ReadOBJ(char* fileName)
 	fclose(fp);
 }
 
-void ObjManager::SaveOBJ(char* fileName)
+void ObjManager::SaveOBJ(const char* fileName)
 {
 	ofstream openFile;
 	string filename(fileName);

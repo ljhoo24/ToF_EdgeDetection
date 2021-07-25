@@ -18,6 +18,7 @@
 #pragma region pcl lib
 
 #include <pcl\visualization\cloud_viewer.h>
+#include <pcl\io\obj_io.h>
 
 #pragma endregion
 

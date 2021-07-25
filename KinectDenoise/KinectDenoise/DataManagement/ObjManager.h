@@ -6,8 +6,8 @@ class ObjManager
 public:
 	ObjManager();
 	~ObjManager();
-	void ReadOBJ(char* fileName);
-	void SaveOBJ(char* fileName);
+	void ReadOBJ(const char* fileName);
+	void SaveOBJ(const char* fileName);
 	void SaveOBJwithTex(char* fileName);
 	vector<Vertex> getOBJ();
 	vector<Vertex> getData();

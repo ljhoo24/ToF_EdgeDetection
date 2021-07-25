@@ -58,7 +58,7 @@ void data_mng::saveDataSet()
 	}
 }
 
-pcl::PointCloud<pcl::PointXYZRGB>::Ptr data_mng::ConvertPointCloud2Vertex(k4a::image pointCloud)
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr data_mng::ConvertKinect2PCL(k4a::image pointCloud)
 {
 	int16_t* data = (int16_t*)pointCloud.get_buffer();
 	int height = pointCloud.get_height_pixels(), width = pointCloud.get_width_pixels();
@@ -68,6 +68,20 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr data_mng::ConvertPointCloud2Vertex(k4a::i
 	for (register int j = 0; j < height * width; j++)
 	{
 		ptc->points.push_back(pcl::PointXYZRGB(data[3 * j + 0] * -1, data[3 * j + 1] * -1, data[3 * j + 2] * -1, 0, 0, 0));
+	}
+
+	return ptc;
+}
+
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr data_mng::ConvertVertex2PCL(vector<Vertex> vecVTX)
+{
+	unsigned int cnt = vecVTX.size();
+
+	pcl::PointCloud<pcl::PointXYZRGB>::Ptr ptc = make_shared <pcl::PointCloud<pcl::PointXYZRGB>>();
+
+	for (register unsigned int i = 0; i < cnt; i++)
+	{
+		ptc->points.push_back(pcl::PointXYZRGB(vecVTX[i].x, vecVTX[i].y, vecVTX[i].z, 0, 0, 0));
 	}
 
 	return ptc;
