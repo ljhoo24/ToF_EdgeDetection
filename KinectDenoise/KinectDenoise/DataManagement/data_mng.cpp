@@ -67,7 +67,7 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr data_mng::ConvertPointCloud2Vertex(k4a::i
 
 	for (register int j = 0; j < height * width; j++)
 	{
-		ptc->points.push_back(pcl::PointXYZRGB(data[3 * j + 0] * -1, data[3 * j + 1] * -1, data[3 * j + 2], 0, 0, 0));
+		ptc->points.push_back(pcl::PointXYZRGB(data[3 * j + 0] * -1, data[3 * j + 1] * -1, data[3 * j + 2] * -1, 0, 0, 0));
 	}
 
 	return ptc;

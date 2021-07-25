@@ -9,8 +9,8 @@
 // azure kinect device
 unique_ptr<azure_kinect> kinectDevice;
 
-// scene draw part
-void drawScene(pcl::visualization::PCLVisualizer& viewer)
+// scene draw for realtime kinect
+void drawSceneKinect(pcl::visualization::PCLVisualizer& viewer)
 {
 	// update every frame
 	auto ptc = kinectDevice->getPointCloudFromSingleDevice();
@@ -28,25 +28,53 @@ void drawScene(pcl::visualization::PCLVisualizer& viewer)
 		viewer.updatePointCloud(pclPTC);
 }
 
+// scene draw for load obj
+void drawSceneObj(pcl::visualization::PCLVisualizer& viewer)
+{
+}
+
 /// todo : keyboard controller update
 int main()
 {
-	// azure kinect setup
-	kinectDevice = make_unique<azure_kinect>(1);
 
-	// pcl viewer setup
-	pcl::visualization::CloudViewer viewer("Tester");
+	int menu = 0;
 
-	//This will only get called once
-	//viewer.runOnVisualizationThreadOnce(once);
+	cout << "Choose Menu" << endl;
+	cout << "1 - Realtime Kinect" << endl;
+	cout << "2 - Load Obj" << endl;
+	cout << "else - exit" << endl;
 
-	//This will get called once per visualization iteration
-	viewer.runOnVisualizationThread(drawScene);
+	cin >> menu;
 
-	while (!viewer.wasStopped())
+	switch (menu)
 	{
-	}
+	case 1:
+	{
+		// azure kinect setup
+		kinectDevice = make_unique<azure_kinect>(1);
 
+		// pcl viewer setup
+		pcl::visualization::CloudViewer viewer("Tester");
+
+		//This will only get called once
+		//viewer.runOnVisualizationThreadOnce(once);
+
+		//This will get called once per visualization iteration
+		viewer.runOnVisualizationThread(drawSceneKinect);
+
+		while (!viewer.wasStopped())
+		{
+		}
+	}
+		break;
+	case 2:
+	{
+
+	}
+		break;
+	default:
+		break;
+	}
 
 	return 0;
 }
