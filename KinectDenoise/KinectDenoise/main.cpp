@@ -42,7 +42,7 @@ int main()
 	cout << "Choose Menu" << endl;
 	cout << "1 - Realtime Kinect" << endl;
 	cout << "2 - Load Obj" << endl;
-	cout << "else - exit" << endl;
+	cout << "else - exit" << endl << "input : ";
 
 	cin >> menu;
 
