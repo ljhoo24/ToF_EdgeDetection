@@ -14,6 +14,7 @@
 #include <list>
 #include <deque>
 #include <cmath>
+#include <map>
 
 #pragma region pcl lib
 
