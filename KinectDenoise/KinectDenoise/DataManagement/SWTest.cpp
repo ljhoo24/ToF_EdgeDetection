@@ -7,6 +7,14 @@ bool cmp(const Vertex& a, const Vertex& b)
 	return a.z > b.z;
 }
 
+SWTest::SWTest()
+{
+}
+
+SWTest::~SWTest()
+{
+}
+
 void SWTest::setPValue()
 {
 	/// 0.05
@@ -338,7 +346,7 @@ void SWTest::setShapiroWilkTable(map<int, vector<float>> shapirowilk)
 	this->m_ShapiroWilkTable = shapirowilk;
 }
 
-bool SWTest::ShapiroWilkTest(vector<Vertex> storage)
+float SWTest::ShapiroWilkTest(vector<Vertex> storage)
 {
 	sort(storage.begin(), storage.end(), cmp);
 
@@ -370,8 +378,16 @@ bool SWTest::ShapiroWilkTest(vector<Vertex> storage)
 
 	float w = pow(b, 2) / ss;
 
-	if (w >= score)
+	/*if (w >= score)
 		return true; /// normal
 	else
-		return false; /// not - normal
+		return false; /// not - normal*/
+
+	return w;
+}
+
+void SWTest::Initialize()
+{
+	this->setPValue();
+	this->setShapiroWilkTable();
 }

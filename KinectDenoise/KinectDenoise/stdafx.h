@@ -20,6 +20,8 @@
 
 #include <pcl\visualization\cloud_viewer.h>
 #include <pcl\io\obj_io.h>
+#include <pcl\kdtree\kdtree_flann.h>
+#include <pcl\io\pcd_io.h>
 
 #pragma endregion
 
@@ -39,6 +41,11 @@ using namespace std;
 
 struct Vertex
 {
+	Vertex(double X, double Y, double Z)
+	{
+		x = X; y = Y; z = Z;
+	}
+	Vertex() {};
 	double x;
 	double y;
 	double z;
