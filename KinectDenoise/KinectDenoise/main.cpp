@@ -4,6 +4,7 @@
 #include "Kinect\azure_kinect.h"
 #include "DataManagement\ObjManager.h"
 #include "DataManagement\data_mng.h"
+#include "DataManagement\SWTest.h"
 #include "Util\timer.h"
 
 // azure kinect device
@@ -42,7 +43,6 @@ int main()
 	cout << "Choose Menu" << endl;
 	cout << "1 - Realtime Kinect" << endl;
 	cout << "2 - Load Obj" << endl;
-	cout << "3 - Save Obj" << endl;
 	cout << "else - exit" << endl << "input : ";
 
 	cin >> menu;
@@ -80,9 +80,16 @@ int main()
 		break;
 	case 3:
 	{
+		/*
+		// azure kinect setup
 		kinectDevice = make_unique<azure_kinect>(1);
 
-		auto ptc = kinectDevice->getPointCloudFromSingleDevice();
+		k4a::image ptc;
+		
+		while (!ptc.is_valid())
+		{
+			ptc = kinectDevice->getPointCloudFromSingleDevice();
+		}
 
 		auto pclPTC = data_mng::ConvertKinect2PCL(ptc);
 
@@ -90,6 +97,7 @@ int main()
 
 		string fileNmae(".\\Data\\data.obj");
 		pcl::io::saveOBJFile(fileNmae, *poly);
+		*/
 	}
 		break;
 	default:

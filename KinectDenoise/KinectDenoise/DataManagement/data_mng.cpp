@@ -67,7 +67,7 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr data_mng::ConvertKinect2PCL(k4a::image po
 
 	for (register int j = 0; j < height * width; j++)
 	{
-		ptc->points.push_back(pcl::PointXYZRGB(data[3 * j + 0] * -1, data[3 * j + 1] * -1, data[3 * j + 2] * -1, 0, 0, 0));
+		ptc->points.push_back(pcl::PointXYZRGB(data[3 * j + 0], data[3 * j + 1] * -1, data[3 * j + 2] * -1, 255, 255, 255));
 	}
 
 	return ptc;
@@ -81,7 +81,7 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr data_mng::ConvertVertex2PCL(vector<Vertex
 
 	for (register unsigned int i = 0; i < cnt; i++)
 	{
-		ptc->points.push_back(pcl::PointXYZRGB(vecVTX[i].x, vecVTX[i].y, vecVTX[i].z, 0, 0, 0));
+		ptc->points.push_back(pcl::PointXYZRGB(vecVTX[i].x, vecVTX[i].y, vecVTX[i].z, 255, 255, 255));
 	}
 
 	return ptc;

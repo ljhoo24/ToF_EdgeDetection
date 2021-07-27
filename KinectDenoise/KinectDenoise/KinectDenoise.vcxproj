@@ -152,6 +152,7 @@
     <ClCompile Include="DataManagement\ObjManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="DataManagement\SWTest.cpp" />
     <ClCompile Include="Kinect\azure_kinect.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -168,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="DataManagement\data_mng.h" />
     <ClInclude Include="DataManagement\ObjManager.h" />
+    <ClInclude Include="DataManagement\SWTest.h" />
     <ClInclude Include="Kinect\azure_kinect.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Util\timer.h" />
