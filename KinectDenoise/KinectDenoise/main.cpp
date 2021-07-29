@@ -10,11 +10,16 @@
 // azure kinect device
 unique_ptr<azure_kinect> kinectDevice;
 
-int cnt = 0;
+bool algFlag = false;
+bool updateFlag = true;
+bool saveFlag = false;
 
 // scene draw for realtime kinect
 void drawSceneKinect(pcl::visualization::PCLVisualizer& viewer)
 {
+	if (!updateFlag)
+		return;
+
 	// update every frame
 	auto ptc = kinectDevice->getPointCloudFromSingleDevice();
 
@@ -28,17 +33,17 @@ void drawSceneKinect(pcl::visualization::PCLVisualizer& viewer)
 	pcl::KdTreeFLANN<pcl::PointXYZRGB> kdtree;
 	kdtree.setInputCloud(pclPTC);
 
-	int k = 36;
-	if (cnt > 100)
+	int k = 9;
+	if (algFlag)
 	{
 
 		for (int i = 0; i < pclPTC->points.size(); i++)
 		{
-			std::vector<int> pointIdxKNNSearch(k);
+			std::vector<int> pointIdxKNNSearch;
 			std::vector<Vertex> shapiroIn;
-			std::vector<float> pointKNNSquaredDistance(k);
+			std::vector<float> pointKNNSquaredDistance;
 
-			if (kdtree.nearestKSearchT(pclPTC->points[i], 50, pointIdxKNNSearch, pointKNNSquaredDistance) > 0)
+			if (kdtree.nearestKSearchT(pclPTC->points[i], k, pointIdxKNNSearch, pointKNNSquaredDistance) > 0)
 			{
 				for (int j = 0; j < pointIdxKNNSearch.size(); j++)
 				{
@@ -48,24 +53,36 @@ void drawSceneKinect(pcl::visualization::PCLVisualizer& viewer)
 				float flag = swtest.ShapiroWilkTest(shapiroIn);
 
 				pclPTC->points[i].r = flag * 255, pclPTC->points[i].g = flag * 255, pclPTC->points[i].b = flag * 255;
+
+				if (saveFlag)
+				{
+					saveFlag = false;
+					ObjManager::SaveXYZWithRGB("Result.xyz", pclPTC);
+				}
 			}
-			;
 		}
 	}
 
 	// draw scene - update point cloud
-	
 	viewer.removePointCloud();
 
 	if (!viewer.addPointCloud(pclPTC))
 		viewer.updatePointCloud(pclPTC);
-
-	cnt++;
 }
 
 // scene draw for load obj
 void drawSceneObj(pcl::visualization::PCLVisualizer& viewer)
 {
+}
+
+void keyboardEventOccurred(const pcl::visualization::KeyboardEvent& event, void* viewer_void)
+{
+	if(event.getKeySym() == "a" && event.keyDown())
+		algFlag = !algFlag;
+	if (event.getKeySym() == "s" && event.keyDown())
+		updateFlag = !updateFlag;
+	if (event.getKeySym() == "d" && event.keyDown())
+		saveFlag = true;
 }
 
 /// todo : keyboard controller update
@@ -82,6 +99,7 @@ int main()
 
 	// pcl viewer setup
 	pcl::visualization::CloudViewer viewer("Tester");
+	viewer.registerKeyboardCallback(keyboardEventOccurred);
 
 	switch (menu)
 	{
@@ -106,31 +124,9 @@ int main()
 
 		auto pclPC = data_mng::ConvertVertex2PCL(data);
 
-		viewer.showCloud(pclPC);
+		//viewer.showCloud(pclPC);
 		//This will get called once per visualization iteration
 		viewer.runOnVisualizationThread(drawSceneObj);
-	}
-		break;
-	case 3:
-	{
-		/*
-		// azure kinect setup
-		kinectDevice = make_unique<azure_kinect>(1);
-
-		k4a::image ptc;
-		
-		while (!ptc.is_valid())
-		{
-			ptc = kinectDevice->getPointCloudFromSingleDevice();
-		}
-
-		auto pclPTC = data_mng::ConvertKinect2PCL(ptc);
-
-		pcl::PolygonMesh::Ptr poly = make_shared<::pcl::PolygonMesh>();
-
-		string fileNmae(".\\Data\\data.obj");
-		pcl::io::saveOBJFile(fileNmae, *poly);
-		*/
 	}
 		break;
 	default:

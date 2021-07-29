@@ -9,6 +9,7 @@ public:
 	void ReadOBJ(const char* fileName);
 	void SaveOBJ(const char* fileName);
 	void SaveOBJwithTex(char* fileName);
+	static void SaveXYZWithRGB(const char* fileName, pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud);
 	vector<Vertex> getOBJ();
 	vector<Vertex> getData();
 	vector<Vertex> getNormal();

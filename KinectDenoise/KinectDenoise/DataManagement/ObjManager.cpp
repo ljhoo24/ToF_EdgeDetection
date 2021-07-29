@@ -87,6 +87,22 @@ void ObjManager::SaveOBJwithTex(char * fileName)
 	openFile.close();
 }
 
+void ObjManager::SaveXYZWithRGB(const char* fileName, pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud)
+{
+	ofstream openFile;
+	string filename(fileName);
+	string filepath(FILEPATH);
+	openFile.open(filepath + filename);
+
+	int cnt = cloud->points.size();
+	for (int i = 0; i < cnt; i++)
+	{
+		openFile << cloud->points[i].x << " " << cloud->points[i].y << " " << cloud->points[i].z << " " << cloud->points[i].r << " " << cloud->points[i].g << " " << cloud->points[i].b << endl;
+	}
+
+	openFile.close();
+}
+
 void ObjManager::ReadNormal(char* fileName)
 {
 	m_Vertices.clear();

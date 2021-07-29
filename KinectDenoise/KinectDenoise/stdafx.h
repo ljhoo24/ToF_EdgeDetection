@@ -33,8 +33,8 @@
 #define MAX(a,b) (((a) > (b)) ? (a) : (b))
 #define MIN(a,b) (((a) < (b)) ? (a) : (b))
 
-#define FILEPATH "./result/"
-#define DATAPATH "./result/nomask/"
+#define FILEPATH "./output/"
+#define DATAPATH "./data/"
 
 
 using namespace std;
