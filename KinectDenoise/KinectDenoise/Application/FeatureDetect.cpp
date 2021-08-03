@@ -76,7 +76,7 @@ void FeatureDetect::NormalAlign(PCptr& pclPC, int knn)
 		Eigen::Vector3f camAxis(0.0, 0.0, -1.0);
 		Eigen::Vector3f normalAxis(cloud_normals->points[i].normal_x, cloud_normals->points[i].normal_y, cloud_normals->points[i].normal_z);
 		Eigen::Vector3f axis = camAxis.cross(normalAxis);
-		float theta = acos(-cloud_normals->points[i].normal_z) * 180 / M_PI;
+		float theta = (float)(acos(-cloud_normals->points[i].normal_z)) * 180 / M_PI;
 		if (theta > 90)
 		{
 			theta = 180 - theta;
