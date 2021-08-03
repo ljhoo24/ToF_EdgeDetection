@@ -33,6 +33,9 @@
     <ClCompile Include="DataManagement\SWTest.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Application\FeatureDetect.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -54,6 +57,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="DataManagement\SWTest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\FeatureDetect.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

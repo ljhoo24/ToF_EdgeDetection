@@ -135,6 +135,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\KinectDenoise;$(PCl_ROOT)\include\pcl-1.12;$(PCL_ROOT);$(PCL_ROOT)\3rdParty\Boost\include;$(PCL_ROOT)\3rdParty\Eigen\eigen3;$(PCL_ROOT)\3rdParty\VTK\include\vtk-9.0;$(PCL_ROOT)\3rdParty\FLANN\include;$(PCL_ROOT)\3rdParty\Qhull\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,6 +154,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="DataManagement\SWTest.cpp" />
+    <ClCompile Include="Application\FeatureDetect.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Kinect\azure_kinect.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -170,6 +174,7 @@
     <ClInclude Include="DataManagement\data_mng.h" />
     <ClInclude Include="DataManagement\ObjManager.h" />
     <ClInclude Include="DataManagement\SWTest.h" />
+    <ClInclude Include="Application\FeatureDetect.h" />
     <ClInclude Include="Kinect\azure_kinect.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Util\timer.h" />
