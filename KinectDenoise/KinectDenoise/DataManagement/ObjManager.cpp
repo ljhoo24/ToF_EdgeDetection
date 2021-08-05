@@ -97,7 +97,7 @@ void ObjManager::SaveXYZWithRGB(const char* fileName, pcl::PointCloud<pcl::Point
 	int cnt = cloud->points.size();
 	for (int i = 0; i < cnt; i++)
 	{
-		openFile << cloud->points[i].x << " " << cloud->points[i].y << " " << cloud->points[i].z << " " << cloud->points[i].r << " " << cloud->points[i].g << " " << cloud->points[i].b << endl;
+		openFile << "v " << (float)cloud->points[i].x << " " << (float)cloud->points[i].y << " " << (float)cloud->points[i].z << " " << (int)cloud->points[i].r << " " << (int)cloud->points[i].r << " " << (int)cloud->points[i].r << endl;
 	}
 
 	openFile.close();

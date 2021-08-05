@@ -31,7 +31,7 @@ void data_mng::saveDataSet()
 	for (register int i = 0; i < m_DataSet.size(); i++)
 	{
 		string str(FILEPATH);
-		str.append("test");
+		str.append(TESTDATA_FILENAME);
 		str.append(to_string(m_fileNumber++));
 		str.append(".obj");
 		
@@ -41,9 +41,9 @@ void data_mng::saveDataSet()
 		rs = m_DataSet[i];
 
 		int16_t* data = (int16_t*)rs.get_buffer();
-		int height = rs.get_height_pixels(), width = rs.get_width_pixels();
+		size_t cnt = rs.get_size();
 
-		for (register int j = 0; j < height * width; j++)
+		for (register int j = 0; j < (cnt / 3); j++)
 		{
 			int16_t x, y, z;
 
@@ -51,7 +51,7 @@ void data_mng::saveDataSet()
 			y = data[3 * j + 1] * -1;
 			z = data[3 * j + 2] * -1;
 
-			fst << "v " << x << " " << y << " " << z << endl;
+			fst << "v " << (int16_t)x << " " << (int16_t)y << " " << (int16_t)z << endl;
 		}
 
 		fst.close();

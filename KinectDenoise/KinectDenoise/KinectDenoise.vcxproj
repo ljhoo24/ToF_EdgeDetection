@@ -163,6 +163,7 @@
     <ClCompile Include="main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Util\mkv_controller.cpp" />
     <ClCompile Include="Util\timer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -177,6 +178,7 @@
     <ClInclude Include="Application\FeatureDetect.h" />
     <ClInclude Include="Kinect\azure_kinect.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Util\mkv_controller.h" />
     <ClInclude Include="Util\timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

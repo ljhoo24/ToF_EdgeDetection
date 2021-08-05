@@ -37,6 +37,7 @@
 
 #define FILEPATH "./output/"
 #define DATAPATH "./data/"
+#define TESTDATA_FILENAME "TResult"
 
 using PCptr = pcl::PointCloud<pcl::PointXYZRGB>::Ptr;
 
